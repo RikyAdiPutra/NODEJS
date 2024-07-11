@@ -14,17 +14,31 @@
 // process.addListener("exit", exitFunction);
 
 // ( readline )
+// import process from "process";
+// import readline from "readline";
+
+// const input = readline.createInterface({
+//   input: process.stdin,
+//   output: process.stdout,
+// });
+
+// const yourName = (name) => {
+//   console.info(`Hello ${name}`);
+//   input.close();
+// };
+
+// input.question("Enter your name ", yourName);
+
+// ( report )
 import process from "process";
-import readline from "readline";
 
-const input = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+process.report.reportOnUncaughtException = true;
+process.report.reportOnFatalError = true;
+process.report.reportOnSignal = true;
+process.report.filename = "report.json";
 
-const yourName = (name) => {
-  console.info(`Hello ${name}`);
-  input.close();
-};
+function sampleError() {
+  throw new Error("Ups");
+}
 
-input.question("Enter your name ", yourName);
+sampleError();
